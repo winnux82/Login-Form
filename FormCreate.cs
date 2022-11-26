@@ -143,6 +143,7 @@ namespace Form_Login
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            Btn_Ajouter.Visible= false;
             if (e.RowIndex >= 0)
             {
 
@@ -218,6 +219,7 @@ namespace Form_Login
             Txt_Mail.Clear();
             dateTimeBirthday.Value = DateTime.Now;
             Btn_Ajouter.Enabled = false;
+            Btn_Ajouter.Visible = true;
         }
         private void VerifierData()
         {
@@ -331,8 +333,7 @@ namespace Form_Login
         private void Txt_Password2_Leave(object sender, EventArgs e)
         {
             if (!IsValidPassword(Txt_Password.Text))
-                MessageBox.Show("Password non valide!\n il faut au moins 8 caractères!");
-
+                MessageBox.Show("Mot de passe invalide!\nIl faut au minimum 8 caractères!\nUne Majuscule et un chiffre!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         private void Txt_Nom_Leave(object sender, EventArgs e)

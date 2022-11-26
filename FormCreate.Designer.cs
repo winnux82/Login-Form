@@ -73,9 +73,9 @@
             // 
             // Btn_Connect
             // 
-            this.Btn_Connect.Location = new System.Drawing.Point(564, 181);
+            this.Btn_Connect.Location = new System.Drawing.Point(471, 47);
             this.Btn_Connect.Name = "Btn_Connect";
-            this.Btn_Connect.Size = new System.Drawing.Size(86, 53);
+            this.Btn_Connect.Size = new System.Drawing.Size(101, 62);
             this.Btn_Connect.TabIndex = 50;
             this.Btn_Connect.Text = "Vérifier Connection";
             this.Btn_Connect.UseVisualStyleBackColor = true;
@@ -187,12 +187,16 @@
             // 
             // Btn_Ajouter
             // 
-            this.Btn_Ajouter.Location = new System.Drawing.Point(8, 331);
+            this.Btn_Ajouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Btn_Ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Ajouter.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Btn_Ajouter.ForeColor = System.Drawing.Color.White;
+            this.Btn_Ajouter.Location = new System.Drawing.Point(10, 322);
             this.Btn_Ajouter.Name = "Btn_Ajouter";
-            this.Btn_Ajouter.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Ajouter.Size = new System.Drawing.Size(80, 32);
             this.Btn_Ajouter.TabIndex = 30;
             this.Btn_Ajouter.Text = "Ajouter";
-            this.Btn_Ajouter.UseVisualStyleBackColor = true;
+            this.Btn_Ajouter.UseVisualStyleBackColor = false;
             this.Btn_Ajouter.Click += new System.EventHandler(this.Btn_Choix_Click);
             // 
             // dataGridView1
@@ -208,22 +212,30 @@
             // 
             // Btn_Update
             // 
-            this.Btn_Update.Location = new System.Drawing.Point(115, 331);
+            this.Btn_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Btn_Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Update.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Btn_Update.ForeColor = System.Drawing.Color.White;
+            this.Btn_Update.Location = new System.Drawing.Point(119, 322);
             this.Btn_Update.Name = "Btn_Update";
-            this.Btn_Update.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Update.Size = new System.Drawing.Size(80, 32);
             this.Btn_Update.TabIndex = 31;
             this.Btn_Update.Text = "Update";
-            this.Btn_Update.UseVisualStyleBackColor = true;
+            this.Btn_Update.UseVisualStyleBackColor = false;
             this.Btn_Update.Click += new System.EventHandler(this.Btn_Choix_Click);
             // 
             // Btn_Delete
             // 
-            this.Btn_Delete.Location = new System.Drawing.Point(219, 331);
+            this.Btn_Delete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Btn_Delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Delete.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Btn_Delete.ForeColor = System.Drawing.Color.White;
+            this.Btn_Delete.Location = new System.Drawing.Point(239, 322);
             this.Btn_Delete.Name = "Btn_Delete";
-            this.Btn_Delete.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Delete.Size = new System.Drawing.Size(80, 32);
             this.Btn_Delete.TabIndex = 32;
             this.Btn_Delete.Text = "Delete";
-            this.Btn_Delete.UseVisualStyleBackColor = true;
+            this.Btn_Delete.UseVisualStyleBackColor = false;
             this.Btn_Delete.Click += new System.EventHandler(this.Btn_Choix_Click);
             // 
             // Lbl_Mail
@@ -245,12 +257,16 @@
             // 
             // Btn_New
             // 
-            this.Btn_New.Location = new System.Drawing.Point(346, 44);
+            this.Btn_New.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
+            this.Btn_New.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_New.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Btn_New.ForeColor = System.Drawing.Color.White;
+            this.Btn_New.Location = new System.Drawing.Point(339, 47);
             this.Btn_New.Name = "Btn_New";
-            this.Btn_New.Size = new System.Drawing.Size(75, 46);
+            this.Btn_New.Size = new System.Drawing.Size(115, 62);
             this.Btn_New.TabIndex = 40;
             this.Btn_New.Text = "Nouvel utilisateur";
-            this.Btn_New.UseVisualStyleBackColor = true;
+            this.Btn_New.UseVisualStyleBackColor = false;
             this.Btn_New.Click += new System.EventHandler(this.Btn_New_Click);
             // 
             // Lbl_Confim
