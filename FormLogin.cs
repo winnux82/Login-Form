@@ -1,15 +1,5 @@
 ﻿using Form_Login;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Calculatrice
 {
@@ -24,7 +14,7 @@ namespace Calculatrice
         private void Btn_Valider_Click(object sender, EventArgs e)
         {
 
-            if (TxtB_Id.Text == "" && TxtB_Pass.Text == "")
+            if (Txt_Id.Text == "" && Txt_Pass.Text == "")
             {
                 //this.Dispose();
                 //this.Close();
@@ -39,32 +29,16 @@ namespace Calculatrice
             }
         }
 
-        private void TxtB_Id_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                TxtB_Pass.Focus();
-            }
-        }
 
-        private void TxtB_Pass_KeyPress(object sender, KeyPressEventArgs e)
+        private void Check_Pwd_CheckedChanged(object sender, EventArgs e)
         {
-            if (e.KeyChar == (char)13)
+            if (Check_Pwd.Checked)
             {
-                Btn_Valider_Click(sender, e);
-            }
-            
-            
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if(checkBox1.Checked)
-            {
-                TxtB_Pass.PasswordChar = '\0';
+                Txt_Pass.PasswordChar = '\0';
             }
             else
-            { TxtB_Pass.PasswordChar = '*';
+            {
+                Txt_Pass.PasswordChar = '*';
             }
 
             //TxtB_Pass.UseSystemPasswordChar = !checkBox1.Checked;
@@ -85,7 +59,7 @@ namespace Calculatrice
 
         private void Lbl_Exit_MouseHover(object sender, EventArgs e)
         {
-           
+
         }
 
         private void labelExit_Click(object sender, EventArgs e)
@@ -106,17 +80,14 @@ namespace Calculatrice
         private void FormLogin_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
-            
+               //Txt_Pass.Focused = false;
+
+
         }
 
         private void TxtB_Pass_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void TxtB_Id_TextChanged(object sender, EventArgs e)
-        {
-
+            
         }
 
         //Soon !
@@ -136,7 +107,7 @@ namespace Calculatrice
 
                 using (connect)
                 {
-                    using (SqlCommand sqlCmd = new SqlCommand(sqlCheck, connect))
+                    using (SqlCommand sqlCmd = new(sqlCheck, connect))
                     {
                         connect.Open();
                         int dataLogin = (int)sqlCmd.ExecuteScalar();
@@ -158,6 +129,22 @@ namespace Calculatrice
             else
             {
                 MessageBox.Show("L'utilsateur n'existe pas");
+            }
+        }
+
+        private void Txt_Id_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                Txt_Pass.Focus();
+            }
+        }
+
+        private void Txt_Pass_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                Btn_Valider_Click(sender, e);
             }
         }
     }

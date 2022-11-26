@@ -52,10 +52,9 @@
             this.Btn_New = new System.Windows.Forms.Button();
             this.Lbl_Confim = new System.Windows.Forms.Label();
             this.Txt_Password2 = new System.Windows.Forms.TextBox();
-            this.Lbl_Force = new System.Windows.Forms.Label();
             this.Lbl_V = new System.Windows.Forms.Label();
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.Check_Pwd = new System.Windows.Forms.CheckBox();
             this.Lbl_Titre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
@@ -65,19 +64,19 @@
             // 
             this.Btn_Exit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Exit.BackgroundImage")));
             this.Btn_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Exit.Location = new System.Drawing.Point(565, 259);
+            this.Btn_Exit.Location = new System.Drawing.Point(563, 263);
             this.Btn_Exit.Name = "Btn_Exit";
             this.Btn_Exit.Size = new System.Drawing.Size(87, 86);
-            this.Btn_Exit.TabIndex = 1;
+            this.Btn_Exit.TabIndex = 99;
             this.Btn_Exit.UseVisualStyleBackColor = true;
             this.Btn_Exit.Click += new System.EventHandler(this.Btn_Exit_Click);
             // 
             // Btn_Connect
             // 
-            this.Btn_Connect.Location = new System.Drawing.Point(565, 195);
+            this.Btn_Connect.Location = new System.Drawing.Point(564, 181);
             this.Btn_Connect.Name = "Btn_Connect";
             this.Btn_Connect.Size = new System.Drawing.Size(86, 53);
-            this.Btn_Connect.TabIndex = 2;
+            this.Btn_Connect.TabIndex = 50;
             this.Btn_Connect.Text = "Vérifier Connection";
             this.Btn_Connect.UseVisualStyleBackColor = true;
             this.Btn_Connect.Click += new System.EventHandler(this.Btn_Connect_Click);
@@ -188,7 +187,7 @@
             // 
             // Btn_Ajouter
             // 
-            this.Btn_Ajouter.Location = new System.Drawing.Point(10, 327);
+            this.Btn_Ajouter.Location = new System.Drawing.Point(8, 331);
             this.Btn_Ajouter.Name = "Btn_Ajouter";
             this.Btn_Ajouter.Size = new System.Drawing.Size(75, 23);
             this.Btn_Ajouter.TabIndex = 30;
@@ -199,7 +198,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 356);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 360);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.Size = new System.Drawing.Size(640, 180);
@@ -209,7 +208,7 @@
             // 
             // Btn_Update
             // 
-            this.Btn_Update.Location = new System.Drawing.Point(117, 327);
+            this.Btn_Update.Location = new System.Drawing.Point(115, 331);
             this.Btn_Update.Name = "Btn_Update";
             this.Btn_Update.Size = new System.Drawing.Size(75, 23);
             this.Btn_Update.TabIndex = 31;
@@ -219,7 +218,7 @@
             // 
             // Btn_Delete
             // 
-            this.Btn_Delete.Location = new System.Drawing.Point(221, 327);
+            this.Btn_Delete.Location = new System.Drawing.Point(219, 331);
             this.Btn_Delete.Name = "Btn_Delete";
             this.Btn_Delete.Size = new System.Drawing.Size(75, 23);
             this.Btn_Delete.TabIndex = 32;
@@ -249,7 +248,7 @@
             this.Btn_New.Location = new System.Drawing.Point(346, 44);
             this.Btn_New.Name = "Btn_New";
             this.Btn_New.Size = new System.Drawing.Size(75, 46);
-            this.Btn_New.TabIndex = 22;
+            this.Btn_New.TabIndex = 40;
             this.Btn_New.Text = "Nouvel utilisateur";
             this.Btn_New.UseVisualStyleBackColor = true;
             this.Btn_New.Click += new System.EventHandler(this.Btn_New_Click);
@@ -272,15 +271,6 @@
             this.Txt_Password2.TextChanged += new System.EventHandler(this.Txt_Password2_TextChanged);
             this.Txt_Password2.Leave += new System.EventHandler(this.Txt_Password2_Leave);
             // 
-            // Lbl_Force
-            // 
-            this.Lbl_Force.AutoSize = true;
-            this.Lbl_Force.Location = new System.Drawing.Point(12, 296);
-            this.Lbl_Force.Name = "Lbl_Force";
-            this.Lbl_Force.Size = new System.Drawing.Size(36, 15);
-            this.Lbl_Force.TabIndex = 25;
-            this.Lbl_Force.Text = "Force";
-            // 
             // Lbl_V
             // 
             this.Lbl_V.AutoSize = true;
@@ -295,22 +285,22 @@
             // PictureBox1
             // 
             this.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PictureBox1.Location = new System.Drawing.Point(117, 291);
+            this.PictureBox1.Location = new System.Drawing.Point(119, 284);
             this.PictureBox1.Name = "PictureBox1";
             this.PictureBox1.Size = new System.Drawing.Size(200, 25);
             this.PictureBox1.TabIndex = 28;
             this.PictureBox1.TabStop = false;
             // 
-            // checkBox1
+            // Check_Pwd
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(165, 259);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(131, 19);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Voir le mot de passe";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.Check_Pwd.AutoSize = true;
+            this.Check_Pwd.Location = new System.Drawing.Point(165, 259);
+            this.Check_Pwd.Name = "Check_Pwd";
+            this.Check_Pwd.Size = new System.Drawing.Size(131, 19);
+            this.Check_Pwd.TabIndex = 18;
+            this.Check_Pwd.Text = "Voir le mot de passe";
+            this.Check_Pwd.UseVisualStyleBackColor = true;
+            this.Check_Pwd.CheckedChanged += new System.EventHandler(this.Check_Pwd_CheckedChanged);
             // 
             // Lbl_Titre
             // 
@@ -329,10 +319,9 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(666, 552);
             this.Controls.Add(this.Lbl_Titre);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.Check_Pwd);
             this.Controls.Add(this.PictureBox1);
             this.Controls.Add(this.Lbl_V);
-            this.Controls.Add(this.Lbl_Force);
             this.Controls.Add(this.Txt_Password2);
             this.Controls.Add(this.Lbl_Confim);
             this.Controls.Add(this.Btn_New);
@@ -391,10 +380,9 @@
         private Button Btn_New;
         private Label Lbl_Confim;
         private TextBox Txt_Password2;
-        private Label Lbl_Force;
         private Label Lbl_V;
         private PictureBox PictureBox1;
-        private CheckBox checkBox1;
+        private CheckBox Check_Pwd;
         private Label Lbl_Titre;
     }
 }

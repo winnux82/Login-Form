@@ -40,6 +40,7 @@
             this.button1.Size = new System.Drawing.Size(87, 86);
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Btn_Exit_Click);
             // 
             // FormMain
             // 

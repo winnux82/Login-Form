@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Drawing.Drawing2D;
 using TextBox = System.Windows.Forms.TextBox;
 using System.Reflection;
+using System.Security.Cryptography;
 
 namespace Form_Login
 {
@@ -52,7 +53,20 @@ namespace Form_Login
 
         }
 
+        static string ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            // ComputeHash - returns byte array  
+            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
 
+            // Convert byte array to a string   
+            StringBuilder builder = new();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
+        }
         private void Btn_Choix_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button Btn = (System.Windows.Forms.Button)sender;
@@ -69,7 +83,8 @@ namespace Form_Login
                     verifid = int.Parse(Txt_ID.Text);
                 }
 
-                Utilisateur DataUser = new(verifid, Txt_Login.Text, Txt_Password.Text,Txt_Nom.Text,Txt_Prenom.Text,Txt_Mail.Text,dateTimeBirthday.Value);
+                string hashed = ComputeSha256Hash(Txt_Password.Text);
+                Utilisateur DataUser = new(verifid, Txt_Login.Text, hashed,Txt_Nom.Text,Txt_Prenom.Text,Txt_Mail.Text,dateTimeBirthday.Value);
 
 
                 if (Btn == Btn_Ajouter)
@@ -160,18 +175,20 @@ namespace Form_Login
         private void FormCreate_Load(object sender, EventArgs e)
         {
             Txt_Password.UseSystemPasswordChar = true;
+            Txt_Password2.UseSystemPasswordChar = true;
             this.CenterToScreen(); 
             Actualiser();
             ToutEffacer();
             Txt_ID_TextChanged(sender, e);
+            Btn_Ajouter.Enabled = false;
         }
 
         private void Txt_Mail_Leave(object sender, EventArgs e)
         {
             try
             {
-                new System.Net.Mail.MailAddress(this.Txt_Mail.Text);
-                Txt_Mail.BackColor = default(Color);
+                new System.Net.Mail.MailAddress(Txt_Mail.Text);
+                Txt_Mail.BackColor = default;
             }
             catch (ArgumentException)
             {
@@ -195,9 +212,12 @@ namespace Form_Login
             Txt_Password2.Clear();
 
             Txt_Nom.Clear();
+            Txt_Nom.BackColor= default;
             Txt_Prenom.Clear();
+            Txt_Prenom.BackColor= default;
             Txt_Mail.Clear();
             dateTimeBirthday.Value = DateTime.Now;
+            Btn_Ajouter.Enabled = false;
         }
         private void VerifierData()
         {
@@ -222,7 +242,10 @@ namespace Form_Login
         private void formfeatures(TextBox pwf1, TextBox pwf2)
         {
             Lbl_V.Visible = pwf1.Text.Length > 0 && pwf2.Text.Equals(pwf1.Text);
-
+            if (Lbl_V.Visible)
+                Btn_Ajouter.Enabled = true;
+            else
+                Btn_Ajouter.Enabled=false;
         }
 
         private void Txt_Password_TextChanged(object sender, EventArgs e)
@@ -288,13 +311,10 @@ namespace Form_Login
         private void Txt_Password2_TextChanged(object sender, EventArgs e)
         {
             formfeatures(Txt_Password, Txt_Password2);
+
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            Txt_Password.UseSystemPasswordChar = !checkBox1.Checked;
-            Txt_Password2.UseSystemPasswordChar = !checkBox1.Checked;
-        }
+
 
         public static bool IsValidPassword(string PwD)
         {
@@ -321,7 +341,7 @@ namespace Form_Login
             {
                 Txt_Nom.BackColor = Color.Crimson;
                 MessageBox.Show("Le champ nom ne peut être vide");
-                Txt_Nom.Focus();
+
             }
             else
                 Txt_Nom.BackColor = Color.Chartreuse;
@@ -332,7 +352,7 @@ namespace Form_Login
             {
                 Txt_Prenom.BackColor = Color.Crimson;
                 MessageBox.Show("Le champ prénom ne peut être vide");
-                Txt_Prenom.Focus();
+
 
             }
             else
@@ -361,5 +381,12 @@ namespace Form_Login
             }
                 
         }
+
+        private void Check_Pwd_CheckedChanged(object sender, EventArgs e)
+        {
+            Txt_Password.UseSystemPasswordChar = !Check_Pwd.Checked;
+            Txt_Password2.UseSystemPasswordChar = !Check_Pwd.Checked;
+        }
+
     }
 }

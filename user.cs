@@ -56,7 +56,8 @@ namespace Form_Login
                 insert.Parameters.AddWithValue("@DateNaissance", DateNaissance);
                 insert.ExecuteNonQuery();
                 connect.Close();
-                MessageBox.Show("Ajouté");
+                MessageBox.Show("Utilisateur ajouté", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
@@ -81,8 +82,8 @@ namespace Form_Login
                 update.Parameters.AddWithValue("@DateNaissance", DateNaissance);
                 update.ExecuteNonQuery();
                 connect.Close();
-                MessageBox.Show("Mis à jour");
-                
+                MessageBox.Show("Informations utilisateur mis à jour", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception ex)
             {
@@ -99,7 +100,7 @@ namespace Form_Login
                 delete.Parameters.AddWithValue("@ID", ID);
                 delete.ExecuteNonQuery();
                 connect.Close();
-                MessageBox.Show("Elément efffacé");
+                MessageBox.Show("Utilisateur effacé", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }
