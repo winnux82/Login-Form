@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreate));
             this.Btn_Exit = new System.Windows.Forms.Button();
             this.Btn_Connect = new System.Windows.Forms.Button();
             this.Lbl_ID = new System.Windows.Forms.Label();
@@ -62,7 +63,7 @@
             // 
             // Btn_Exit
             // 
-            this.Btn_Exit.BackgroundImage = global::Form_Login.Properties.Resources.exit;
+            this.Btn_Exit.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Exit.BackgroundImage")));
             this.Btn_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Btn_Exit.Location = new System.Drawing.Point(565, 259);
             this.Btn_Exit.Name = "Btn_Exit";

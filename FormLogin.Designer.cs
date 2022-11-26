@@ -105,7 +105,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = global::Form_Login.Properties.Resources.logo;
+            this.pictureBox1.BackgroundImage = global::Form_Login.Properties.Resources.logo1;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(93, 12);
             this.pictureBox1.Name = "pictureBox1";
@@ -131,7 +131,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::Form_Login.Properties.Resources.favlogin;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBox2.Location = new System.Drawing.Point(39, 186);
             this.pictureBox2.Name = "pictureBox2";
