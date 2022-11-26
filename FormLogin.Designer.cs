@@ -57,6 +57,7 @@
             this.TxtB_Id.PlaceholderText = "Identifiant";
             this.TxtB_Id.Size = new System.Drawing.Size(116, 23);
             this.TxtB_Id.TabIndex = 2;
+            this.TxtB_Id.TextChanged += new System.EventHandler(this.TxtB_Id_TextChanged);
             this.TxtB_Id.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtB_Id_KeyPress);
             // 
             // TxtB_Pass
@@ -71,7 +72,8 @@
             this.TxtB_Pass.PasswordChar = '*';
             this.TxtB_Pass.PlaceholderText = "Password";
             this.TxtB_Pass.Size = new System.Drawing.Size(116, 23);
-            this.TxtB_Pass.TabIndex = 3;
+            this.TxtB_Pass.TabIndex = 6;
+            this.TxtB_Pass.TextChanged += new System.EventHandler(this.TxtB_Pass_TextChanged);
             this.TxtB_Pass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtB_Pass_KeyPress);
             // 
             // Btn_Valider
@@ -197,7 +199,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormLogin";
+            this.Opacity = 0.95D;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

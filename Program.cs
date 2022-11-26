@@ -18,8 +18,8 @@ namespace Form_Login
 
             if (login.IsValidLogin == true)
             {
-                FormMain Principal = new();
-                Principal.ShowDialog();
+                new FormCreate().ShowDialog();
+
             }
 
 

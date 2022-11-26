@@ -21,6 +21,11 @@ namespace Form_Login
             Application.Exit();
 
         }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
