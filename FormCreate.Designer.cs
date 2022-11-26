@@ -64,7 +64,7 @@
             // 
             this.Btn_Exit.BackgroundImage = global::Form_Login.Properties.Resources.exit;
             this.Btn_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Btn_Exit.Location = new System.Drawing.Point(565, 260);
+            this.Btn_Exit.Location = new System.Drawing.Point(565, 259);
             this.Btn_Exit.Name = "Btn_Exit";
             this.Btn_Exit.Size = new System.Drawing.Size(87, 86);
             this.Btn_Exit.TabIndex = 1;
@@ -73,7 +73,7 @@
             // 
             // Btn_Connect
             // 
-            this.Btn_Connect.Location = new System.Drawing.Point(544, 56);
+            this.Btn_Connect.Location = new System.Drawing.Point(565, 195);
             this.Btn_Connect.Name = "Btn_Connect";
             this.Btn_Connect.Size = new System.Drawing.Size(86, 53);
             this.Btn_Connect.TabIndex = 2;
@@ -150,6 +150,7 @@
             this.Txt_ID.Size = new System.Drawing.Size(200, 23);
             this.Txt_ID.TabIndex = 10;
             this.Txt_ID.Visible = false;
+            this.Txt_ID.TextChanged += new System.EventHandler(this.Txt_ID_TextChanged);
             // 
             // Txt_Nom
             // 
@@ -325,7 +326,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(671, 552);
+            this.ClientSize = new System.Drawing.Size(666, 552);
             this.Controls.Add(this.Lbl_Titre);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.PictureBox1);

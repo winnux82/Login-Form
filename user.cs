@@ -47,9 +47,6 @@ namespace Form_Login
             {
                 SqlConnection connect = new ("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
                 connect.Open();
-                //SqlCommand insert = new("insert into users(Login,Pwd) values (@Login,@Pwd)", connect);
-
-                
                 SqlCommand insert = new("insert into users(Login,Pwd,Nom,Prenom,Mail,DateNaissance) values (@Login,@Pwd,@Nom,@Prenom,@Mail,@DateNaissance)", connect);
                 insert.Parameters.AddWithValue("@Login", Login);
                 insert.Parameters.AddWithValue("@Pwd", Pwd);
@@ -74,7 +71,6 @@ namespace Form_Login
             {
                 SqlConnection connect = new ("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
                 connect.Open();
-
                 SqlCommand update = new("update users set Login=@Login, Pwd=@Pwd, Nom=@Nom, Prenom=@Prenom, Mail=@Mail, DateNaissance=@DateNaissance where ID=@ID", connect);
                 update.Parameters.AddWithValue("@ID", ID);
                 update.Parameters.AddWithValue("@Login", Login);
@@ -104,9 +100,6 @@ namespace Form_Login
                 delete.ExecuteNonQuery();
                 connect.Close();
                 MessageBox.Show("Elément efffacé");
-
-
-
         }
     }
 }

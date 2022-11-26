@@ -99,8 +99,13 @@ namespace Form_Login
                 }
                 if (Btn== Btn_Delete)
                 {
-                    DataUser.Delete();
-                    Actualiser();
+                    if (MessageBox.Show(this, "Etes-vous sûr ?", "ATTENTION !!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                    {
+                        //Action si l'utilisateur est sûr
+                        DataUser.Delete();
+                        Actualiser();
+                    }
+
                 }
 
             }
@@ -158,6 +163,7 @@ namespace Form_Login
             this.CenterToScreen(); 
             Actualiser();
             ToutEffacer();
+            Txt_ID_TextChanged(sender, e);
         }
 
         private void Txt_Mail_Leave(object sender, EventArgs e)
@@ -336,6 +342,24 @@ namespace Form_Login
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void Txt_ID_TextChanged(object sender, EventArgs e)
+        {
+            if (Txt_ID.Text == "")
+            {
+                Btn_Delete.Enabled = false;
+                Btn_Update.Enabled = false;
+                Btn_Ajouter.Enabled = true;
+            }
+
+            else
+            {
+                Btn_Ajouter.Enabled = false;
+                Btn_Delete.Enabled=true;
+                Btn_Update.Enabled=true;
+            }
+                
         }
     }
 }
