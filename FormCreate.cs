@@ -20,7 +20,6 @@ namespace Form_Login
 
         SqlConnection connect = new SqlConnection("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
 
-        
         public FormCreate()
         {
             InitializeComponent();
