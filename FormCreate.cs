@@ -94,6 +94,8 @@ namespace Form_Login
                         VerifierData();
                         DataUser.Ajouter();
                         Actualiser();
+
+                        Btn_New_Click(sender, e);
                     }
                     else
                         MessageBox.Show("Veuillez remplir correctement les champs mot de passe");
@@ -144,6 +146,8 @@ namespace Form_Login
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Btn_Ajouter.Visible= false;
+            Btn_Update.Enabled = true;
+            Btn_Delete.Enabled = true;
             if (e.RowIndex >= 0)
             {
 
@@ -236,6 +240,7 @@ namespace Form_Login
         private void Btn_New_Click(object sender, EventArgs e)
         {
             ToutEffacer();
+            Txt_Nom.Focus();
         }
 
 
@@ -389,5 +394,9 @@ namespace Form_Login
             Txt_Password2.UseSystemPasswordChar = !Check_Pwd.Checked;
         }
 
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
     }
 }
