@@ -37,7 +37,7 @@
             this.Btn_Create = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.labelExit = new System.Windows.Forms.Label();
+            this.LabelExit = new System.Windows.Forms.Label();
             this.Picture_ID = new System.Windows.Forms.PictureBox();
             this.Picture_Pwd = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Picture_Logo)).BeginInit();
@@ -52,10 +52,9 @@
             this.Txt_Id.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.Txt_Id.Location = new System.Drawing.Point(119, 193);
             this.Txt_Id.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Txt_Id.Multiline = true;
             this.Txt_Id.Name = "Txt_Id";
             this.Txt_Id.PlaceholderText = "Identifiant";
-            this.Txt_Id.Size = new System.Drawing.Size(116, 23);
+            this.Txt_Id.Size = new System.Drawing.Size(116, 15);
             this.Txt_Id.TabIndex = 2;
             this.Txt_Id.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Id_KeyPress);
             // 
@@ -66,13 +65,11 @@
             this.Txt_Pass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(117)))), ((int)(((byte)(214)))));
             this.Txt_Pass.Location = new System.Drawing.Point(120, 234);
             this.Txt_Pass.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.Txt_Pass.Multiline = true;
             this.Txt_Pass.Name = "Txt_Pass";
             this.Txt_Pass.PasswordChar = '*';
             this.Txt_Pass.PlaceholderText = "Password";
-            this.Txt_Pass.Size = new System.Drawing.Size(116, 23);
+            this.Txt_Pass.Size = new System.Drawing.Size(116, 15);
             this.Txt_Pass.TabIndex = 3;
-            this.Txt_Pass.TextChanged += new System.EventHandler(this.TxtB_Pass_TextChanged);
             this.Txt_Pass.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Pass_KeyPress);
             // 
             // Btn_Valider
@@ -144,19 +141,19 @@
             this.panel2.Size = new System.Drawing.Size(200, 1);
             this.panel2.TabIndex = 11;
             // 
-            // labelExit
+            // LabelExit
             // 
-            this.labelExit.AutoEllipsis = true;
-            this.labelExit.AutoSize = true;
-            this.labelExit.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelExit.Location = new System.Drawing.Point(249, 339);
-            this.labelExit.Name = "labelExit";
-            this.labelExit.Size = new System.Drawing.Size(26, 15);
-            this.labelExit.TabIndex = 12;
-            this.labelExit.Text = "Exit";
-            this.labelExit.Click += new System.EventHandler(this.labelExit_Click);
-            this.labelExit.MouseLeave += new System.EventHandler(this.labelExit_MouseLeave);
-            this.labelExit.MouseHover += new System.EventHandler(this.labelExit_MouseHover);
+            this.LabelExit.AutoEllipsis = true;
+            this.LabelExit.AutoSize = true;
+            this.LabelExit.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LabelExit.Location = new System.Drawing.Point(249, 339);
+            this.LabelExit.Name = "LabelExit";
+            this.LabelExit.Size = new System.Drawing.Size(26, 15);
+            this.LabelExit.TabIndex = 12;
+            this.LabelExit.Text = "Exit";
+            this.LabelExit.Click += new System.EventHandler(this.labelExit_Click);
+            this.LabelExit.MouseLeave += new System.EventHandler(this.labelExit_MouseLeave);
+            this.LabelExit.MouseHover += new System.EventHandler(this.labelExit_MouseHover);
             // 
             // Picture_ID
             // 
@@ -186,7 +183,7 @@
             this.ClientSize = new System.Drawing.Size(287, 363);
             this.Controls.Add(this.Picture_Pwd);
             this.Controls.Add(this.Picture_ID);
-            this.Controls.Add(this.labelExit);
+            this.Controls.Add(this.LabelExit);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Btn_Create);
@@ -218,7 +215,7 @@
         private Button Btn_Create;
         private Panel panel1;
         private Panel panel2;
-        private Label labelExit;
+        private Label LabelExit;
         private PictureBox Picture_ID;
         private PictureBox Picture_Pwd;
     }

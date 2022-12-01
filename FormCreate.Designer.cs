@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCreate));
             this.Btn_Exit = new System.Windows.Forms.Button();
             this.Btn_Connect = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DataGridView1 = new System.Windows.Forms.DataGridView();
             this.Btn_New = new System.Windows.Forms.Button();
             this.Lbl_Titre = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -59,8 +59,8 @@
             this.PictureBox1 = new System.Windows.Forms.PictureBox();
             this.Check_Pwd = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -87,16 +87,15 @@
             this.Btn_Connect.UseVisualStyleBackColor = true;
             this.Btn_Connect.Click += new System.EventHandler(this.Btn_Connect_Click);
             // 
-            // dataGridView1
+            // DataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 429);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(640, 180);
-            this.dataGridView1.TabIndex = 16;
-            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridView1.Location = new System.Drawing.Point(9, 429);
+            this.DataGridView1.Name = "DataGridView1";
+            this.DataGridView1.RowTemplate.Height = 25;
+            this.DataGridView1.Size = new System.Drawing.Size(640, 180);
+            this.DataGridView1.TabIndex = 16;
+            this.DataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellClick);
             // 
             // Btn_New
             // 
@@ -293,7 +292,7 @@
             this.Txt_Mail.Name = "Txt_Mail";
             this.Txt_Mail.Size = new System.Drawing.Size(200, 23);
             this.Txt_Mail.TabIndex = 43;
-            this.toolTip1.SetToolTip(this.Txt_Mail, "8 caractères minimum, 1 majuscule & 1 chiffre minimum");
+            this.ToolTip1.SetToolTip(this.Txt_Mail, "8 caractères minimum, 1 majuscule & 1 chiffre minimum");
             this.Txt_Mail.Leave += new System.EventHandler(this.Txt_Mail_Leave);
             // 
             // Lbl_Confim
@@ -373,11 +372,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(383, 361);
             this.panel2.TabIndex = 101;
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
-            // 
+
             // FormCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -387,13 +382,15 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Btn_New);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DataGridView1);
             this.Controls.Add(this.Btn_Connect);
             this.Controls.Add(this.Btn_Exit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormCreate";
             this.Text = "Formulaire de création";
             this.Load += new System.EventHandler(this.FormCreate_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -406,7 +403,7 @@
 
         private Button Btn_Exit;
         private Button Btn_Connect;
-        private DataGridView dataGridView1;
+        private DataGridView DataGridView1;
         private Button Btn_New;
         private Label Lbl_Titre;
         private Panel panel1;
@@ -433,6 +430,6 @@
         private PictureBox PictureBox1;
         private CheckBox Check_Pwd;
         private Panel panel2;
-        private ToolTip toolTip1;
+        private ToolTip ToolTip1;
     }
 }

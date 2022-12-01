@@ -28,7 +28,12 @@ namespace Form_Login
             Pwd = pwd;
         }
 
-        public Utilisateur(int id,string login, string pwd, string nom, string prenom, string mail) : this(id,login, pwd)
+        public Utilisateur(int id,
+                           string login,
+                           string pwd,
+                           string nom,
+                           string prenom,
+                           string mail) : this(id, login, pwd)
         {
             Nom = nom;
             Prenom = prenom;

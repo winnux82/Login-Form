@@ -17,6 +17,7 @@ using System.Drawing.Drawing2D;
 using TextBox = System.Windows.Forms.TextBox;
 using System.Reflection;
 using System.Security.Cryptography;
+using Calculatrice;
 
 namespace Form_Login
 {
@@ -31,7 +32,10 @@ namespace Form_Login
 
         private void Btn_Exit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Hide();
+            //Application.Exit();
+            FormLogin NewFormLogin = new();   
+            NewFormLogin.ShowDialog();
         }
 
         private void Btn_Connect_Click(object sender, EventArgs e)
@@ -74,7 +78,7 @@ namespace Form_Login
             try
             {
                 int verifid;
-                if(Txt_ID.Text=="")
+                if(string.IsNullOrEmpty(Txt_ID.Text))
                 {
                     verifid= 0;
                 }
@@ -91,6 +95,10 @@ namespace Form_Login
                 {
                     if (Lbl_V.Visible)
                     {
+
+                        if(dateTimeBirthday.Value > DateTime.Today.AddYears(-18))
+                                MessageBox.Show("mineur");
+
                         VerifierData();
                         DataUser.Ajouter();
                         Actualiser();
@@ -141,9 +149,9 @@ namespace Form_Login
             SqlDataAdapter adapter = new(voir);
             DataTable Dt = new  ();
             adapter.Fill(Dt);
-            dataGridView1.DataSource = Dt;
+            DataGridView1.DataSource = Dt;
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Btn_Ajouter.Visible= false;
             Btn_Update.Enabled = true;
@@ -151,7 +159,7 @@ namespace Form_Login
             if (e.RowIndex >= 0)
             {
 
-                DataGridViewRow row = this.dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = DataGridView1.Rows[e.RowIndex];
 
                 Txt_ID.Text = row.Cells[0].Value.ToString();
                 Txt_Login.Text = row.Cells[1].Value.ToString();
@@ -192,22 +200,24 @@ namespace Form_Login
         {
             try
             {
-                new System.Net.Mail.MailAddress(Txt_Mail.Text);
+                _ = new System.Net.Mail.MailAddress(Txt_Mail.Text);
                 Txt_Mail.BackColor = default;
             }
             catch (ArgumentException)
             {
-                //textBox is empty
+                MessageBox.Show("Email non valide");
+                Txt_Mail.BackColor = Color.Crimson;
             }
             catch (FormatException)
             {
                 MessageBox.Show("Email non valide");
-                Txt_Mail.BackColor = Color.Red;
+                Txt_Mail.BackColor = Color.Crimson;
             }
         }
 
         private void ToutEffacer()
         {
+
             Txt_ID.Clear();
             Txt_ID.Visible = false;
             Lbl_ID.Visible = false;
@@ -235,8 +245,28 @@ namespace Form_Login
             {
                 MessageBox.Show("Nom Vide");
             }
+            //string loulou = Txt_Nom.Text;
+            //if(!string.IsNullOrEmpty(loulou))
+            //        {  loulou.All( c => c.)              
+            //}
+
 
         }
+
+        //private void DataVerif()
+        //{
+        //    foreach (Control c in this.Controls)
+        //    {
+        //        if (c is TextBox)
+        //        {
+        //            TextBox textBox = c as TextBox;
+        //            if (textBox.Text == string.Empty)
+        //            {
+        //                c.ForeColor= Color.Red;
+        //            }
+        //        }
+        //    }
+        //}
         private void Btn_New_Click(object sender, EventArgs e)
         {
             ToutEffacer();
@@ -321,18 +351,14 @@ namespace Form_Login
 
         }
 
-
-
         public static bool IsValidPassword(string PwD)
         {
-
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpperChar = new Regex(@"[A-Z]+");
             var hasMinimum8Chars = new Regex(@".{8,}");
 
             var isValidated = hasNumber.IsMatch(PwD) && hasUpperChar.IsMatch(PwD) && hasMinimum8Chars.IsMatch(PwD);
             return (isValidated);
-
         }
 
         private void Txt_Password2_Leave(object sender, EventArgs e)
@@ -346,7 +372,17 @@ namespace Form_Login
             if (Txt_Nom.Text == "")
             {
                 Txt_Nom.BackColor = Color.Crimson;
-                MessageBox.Show("Le champ nom ne peut être vide");
+
+                System.Windows.Forms.ToolTip t_Tip = new System.Windows.Forms.ToolTip();
+                t_Tip.Active = true;
+                t_Tip.AutoPopDelay = 4000;
+                t_Tip.InitialDelay = 600;
+                t_Tip.IsBalloon = false;
+                t_Tip.ToolTipIcon = ToolTipIcon.Info;
+                t_Tip.SetToolTip(Txt_Nom, "Name should start with Capital letter");
+
+
+                //MessageBox.Show("Le champ nom ne peut être vide");
 
             }
             else
@@ -357,18 +393,27 @@ namespace Form_Login
             if (Txt_Prenom.Text == "")
             {
                 Txt_Prenom.BackColor = Color.Crimson;
-                MessageBox.Show("Le champ prénom ne peut être vide");
-
-
+                //MessageBox.Show("Le champ prénom ne peut être vide");
             }
             else
                 Txt_Prenom.BackColor = Color.Chartreuse;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
+        private bool IsNotEmptyOnlyLetters(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+
+            foreach (char caractere in s)
+            {
+                if (!char.IsLetter(caractere))
+                    return false;
+            }
+
+            return true;
         }
+
 
         private void Txt_ID_TextChanged(object sender, EventArgs e)
         {
@@ -392,11 +437,6 @@ namespace Form_Login
         {
             Txt_Password.UseSystemPasswordChar = !Check_Pwd.Checked;
             Txt_Password2.UseSystemPasswordChar = !Check_Pwd.Checked;
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
         }
     }
 }

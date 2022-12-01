@@ -1,5 +1,7 @@
 ﻿using Form_Login;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Calculatrice
 {
@@ -14,21 +16,29 @@ namespace Calculatrice
         private void Btn_Valider_Click(object sender, EventArgs e)
         {
 
-            if (Txt_Id.Text == "" && Txt_Pass.Text == "")
+            if (IsUserExist(Txt_Id.Text))
             {
-                //this.Dispose();
-                //this.Close();
-                IsValidLogin = true;
-                Close();
+                //MessageBox.Show("ok");
+                if(IsAccountExist(Txt_Id.Text,Txt_Pass.Text))
+                {
+                    //this.Dispose();
+                    //this.Close();
+                    
+                    IsValidLogin = true;
+                    this.Hide();
+                }
+                else
+                {
+                    Txt_Pass.BackColor = Color.Crimson;
+                }
 
-                //.Show() peut reouvrir en boucle alors que ShowDialog n'ouvre qu'une fois et plus accès à l'autre
-            }
-            else
-            {
+
+            } else
                 MessageBox.Show("Vous n'êtes pas autorisé à vous connecter !!!", "login", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
+
+
+        }
 
         private void Check_Pwd_CheckedChanged(object sender, EventArgs e)
         {
@@ -69,29 +79,22 @@ namespace Calculatrice
 
         private void labelExit_MouseHover(object sender, EventArgs e)
         {
-            labelExit.ForeColor = Color.Red;
+            LabelExit.ForeColor = Color.Crimson;
         }
 
         private void labelExit_MouseLeave(object sender, EventArgs e)
         {
-            labelExit.ForeColor = SystemColors.ControlText;
+            LabelExit.ForeColor = SystemColors.ControlText;
         }
 
         private void FormLogin_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
                //Txt_Pass.Focused = false;
-
-
-        }
-
-        private void TxtB_Pass_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         //Soon !
-        private void IsUserExist(string User)
+        private bool IsUserExist(string User)
         {
 
             bool result = false;
@@ -99,38 +102,85 @@ namespace Calculatrice
             try
             {
                 SqlConnection connect = new("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                connect.Open();
+                //connect.Open();
                 SqlCommand voir = new("Select * from users", connect);
-
-
                 string sqlCheck = string.Format("SELECT * from users WHERE Login = '{0}'", User);
-
                 using (connect)
                 {
                     using (SqlCommand sqlCmd = new(sqlCheck, connect))
                     {
                         connect.Open();
-                        int dataLogin = (int)sqlCmd.ExecuteScalar();
+                        //Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+                        Int32 dataLogin = Convert.ToInt32(sqlCmd.ExecuteScalar());
                         connect.Close();
-
-                        result = (dataLogin > 0);
+                        return result = (dataLogin > 0);
                     }
                 }
             }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
             catch (Exception ex)
             {
-                result = false;
+                MessageBox.Show(ex.Message);
             }
-
             if (result)
             {
-                MessageBox.Show("L'utilisateur existe");
+                return true;
             }
             else
             {
-                MessageBox.Show("L'utilsateur n'existe pas");
+                return false;
             }
+
+
         }
+
+        private bool IsAccountExist(string User, string Password)
+        {
+            bool result = false;
+
+            try
+            {
+                SqlConnection connect = new("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
+                //connect.Open();
+                var PwdHash = ComputeSha256Hash(Password);
+                string sqlCheck = string.Format("SELECT * from users WHERE Login = '{0}' AND Pwd = '{1}'", User, PwdHash);
+                using (connect)
+                {
+                    using (SqlCommand sqlCmd = new(sqlCheck, connect))
+                    {
+                        connect.Open();
+                        //Int32 count = Convert.ToInt32(cmd.ExecuteScalar());
+                        Int32 dataLogin = Convert.ToInt32(sqlCmd.ExecuteScalar());
+                        connect.Close();
+                        return result = (dataLogin > 0);
+                    }
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            if (result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
 
         private void Txt_Id_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -146,6 +196,21 @@ namespace Calculatrice
             {
                 Btn_Valider_Click(sender, e);
             }
+        }
+
+        static string ComputeSha256Hash(string rawData)
+        {
+            // Create a SHA256   
+            // ComputeHash - returns byte array  
+            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
+
+            // Convert byte array to a string   
+            StringBuilder builder = new();
+            for (int i = 0; i < bytes.Length; i++)
+            {
+                builder.Append(bytes[i].ToString("x2"));
+            }
+            return builder.ToString();
         }
     }
 }
