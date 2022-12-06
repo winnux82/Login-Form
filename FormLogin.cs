@@ -79,12 +79,12 @@ namespace Calculatrice
 
         private void labelExit_MouseHover(object sender, EventArgs e)
         {
-            LabelExit.ForeColor = Color.Crimson;
+            //LabelExit.ForeColor = Color.Crimson;
         }
 
         private void labelExit_MouseLeave(object sender, EventArgs e)
         {
-            LabelExit.ForeColor = SystemColors.ControlText;
+            //LabelExit.ForeColor = SystemColors.ControlText;
         }
 
         private void FormLogin_Load(object sender, EventArgs e)

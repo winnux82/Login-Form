@@ -18,6 +18,7 @@ using TextBox = System.Windows.Forms.TextBox;
 using System.Reflection;
 using System.Security.Cryptography;
 using Calculatrice;
+using System.Xml.Linq;
 
 namespace Form_Login
 {
@@ -179,11 +180,58 @@ namespace Form_Login
 
             }
         }
-
+        private char PreviousChar;
         private void Txt_Names_KeyPress(object sender, KeyPressEventArgs e)
         {
-            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+
+            if (Char.IsWhiteSpace(PreviousChar) || PreviousChar == '\0')
+            {
+                e.KeyChar = Char.ToUpper(e.KeyChar);
+            }
+            PreviousChar = e.KeyChar;
+
+            //e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back);
+
+            //TextBox txb = (TextBox)sender;
+            //e.KeyChar = (e.KeyChar.ToString()).ToUpper().ToCharArray()[0];
+            //e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back) ;
+
+            //txb.Text = txb.Text.ToUpper();
         }
+
+        private void Txt_Nom_Leave(object sender, EventArgs e)
+        {
+            
+            if (Txt_Nom.Text == "")
+            {
+                Txt_Nom.BackColor = Color.Crimson;
+
+                System.Windows.Forms.ToolTip t_Tip = new System.Windows.Forms.ToolTip();
+                t_Tip.Active = true;
+                t_Tip.AutoPopDelay = 1000;
+                t_Tip.InitialDelay = 600;
+                t_Tip.IsBalloon = false;
+                t_Tip.ToolTipIcon = ToolTipIcon.Info;
+                t_Tip.SetToolTip(Txt_Nom, "Name should start with Capital letter");
+
+
+                //MessageBox.Show("Le champ nom ne peut être vide");
+
+            }
+            else
+                Txt_Nom.BackColor = Color.Chartreuse;
+        }
+        private void Txt_Prenom_Leave(object sender, EventArgs e)
+        {
+            if (Txt_Prenom.Text == "")
+            {
+                Txt_Prenom.BackColor = Color.Crimson;
+                //MessageBox.Show("Le champ prénom ne peut être vide");
+            }
+            else
+                Txt_Prenom.BackColor = Color.Chartreuse;
+        }
+
 
         private void FormCreate_Load(object sender, EventArgs e)
         {
@@ -367,37 +415,6 @@ namespace Form_Login
                 MessageBox.Show("Mot de passe invalide!\nIl faut au minimum 8 caractères!\nUne Majuscule et un chiffre!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
-        private void Txt_Nom_Leave(object sender, EventArgs e)
-        {
-            if (Txt_Nom.Text == "")
-            {
-                Txt_Nom.BackColor = Color.Crimson;
-
-                System.Windows.Forms.ToolTip t_Tip = new System.Windows.Forms.ToolTip();
-                t_Tip.Active = true;
-                t_Tip.AutoPopDelay = 4000;
-                t_Tip.InitialDelay = 600;
-                t_Tip.IsBalloon = false;
-                t_Tip.ToolTipIcon = ToolTipIcon.Info;
-                t_Tip.SetToolTip(Txt_Nom, "Name should start with Capital letter");
-
-
-                //MessageBox.Show("Le champ nom ne peut être vide");
-
-            }
-            else
-                Txt_Nom.BackColor = Color.Chartreuse;
-        }
-        private void Txt_Prenom_Leave(object sender, EventArgs e)
-        {
-            if (Txt_Prenom.Text == "")
-            {
-                Txt_Prenom.BackColor = Color.Crimson;
-                //MessageBox.Show("Le champ prénom ne peut être vide");
-            }
-            else
-                Txt_Prenom.BackColor = Color.Chartreuse;
-        }
 
 
         private bool IsNotEmptyOnlyLetters(string s)
@@ -438,5 +455,6 @@ namespace Form_Login
             Txt_Password.UseSystemPasswordChar = !Check_Pwd.Checked;
             Txt_Password2.UseSystemPasswordChar = !Check_Pwd.Checked;
         }
+
     }
 }

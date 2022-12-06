@@ -209,6 +209,7 @@
             this.Txt_Nom.Size = new System.Drawing.Size(200, 23);
             this.Txt_Nom.TabIndex = 40;
             this.Txt_Nom.TextChanged += new System.EventHandler(this.Txt_Nom_Leave);
+            this.Txt_Nom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Names_KeyPress);
             this.Txt_Nom.Leave += new System.EventHandler(this.Txt_Nom_Leave);
             // 
             // Txt_Prenom
@@ -218,6 +219,8 @@
             this.Txt_Prenom.Size = new System.Drawing.Size(200, 23);
             this.Txt_Prenom.TabIndex = 41;
             this.Txt_Prenom.TextChanged += new System.EventHandler(this.Txt_Prenom_Leave);
+            //this.Txt_Prenom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Txt_Prenom_KeyDown);
+            this.Txt_Prenom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Names_KeyPress);
             this.Txt_Prenom.Leave += new System.EventHandler(this.Txt_Prenom_Leave);
             // 
             // Txt_Login
@@ -372,7 +375,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(383, 361);
             this.panel2.TabIndex = 101;
-
+            // 
             // FormCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
