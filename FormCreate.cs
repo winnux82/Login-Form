@@ -92,10 +92,11 @@ namespace Form_Login
                     if (Lbl_V.Visible)
                     {
                         VerifierData();
-                        DataUser.Ajouter();
+                        userBDD.AddUser(DataUser);
+                        //DataUser.Ajouter();
                         Actualiser();
 
-                        Btn_New_Click(sender, e);
+                        //Btn_New_Click(sender, e);
                     }
                     else
                         MessageBox.Show("Veuillez remplir correctement les champs mot de passe");
@@ -107,7 +108,8 @@ namespace Form_Login
                 {
                     if (Lbl_V.Visible)
                     {
-                        DataUser.Update();
+                        userBDD.Update(DataUser);
+                        //DataUser.Update();
                         Actualiser();
 
                     }
@@ -119,7 +121,8 @@ namespace Form_Login
                     if (MessageBox.Show(this, "Etes-vous sûr ?", "ATTENTION !!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                     {
                         //Action si l'utilisateur est sûr
-                        DataUser.Delete();
+                        //DataUser.Delete();
+                        userBDD.Delete(DataUser);
                         Actualiser();
                     }
 

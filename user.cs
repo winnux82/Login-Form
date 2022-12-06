@@ -12,7 +12,6 @@ namespace Form_Login
         public int ID { get; set; }
         public string Login { get; set; }
         public string Pwd { get; set; }
-
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Mail { get; set; }
@@ -37,6 +36,10 @@ namespace Form_Login
 
         public Utilisateur(int id,string login, string pwd, string nom, string prenom, string mail, DateTime dateNaissance) : this(id,login, pwd, nom, prenom, mail)
         {
+            ID = id;
+            Login = login;
+            Pwd = pwd;
+
             DateNaissance = dateNaissance;
 
         }
