@@ -22,7 +22,7 @@ namespace Form_Login
                 {
                     SqlCommand cmd = new SqlCommand();
                     cmd.CommandType = System.Data.CommandType.Text;
-                    cmd.CommandText = $"INSERT INTO users (Login,Pwd,Nom,Prenom,Mail,DateNaissance) VALUES ('{user.Login}','{user.Pwd}''{user.Nom}','{user.Prenom}','{user.Mail}','{user.DateNaissance}')";
+                    cmd.CommandText = $"INSERT INTO users (Login,Pwd,Nom,Prenom,Mail,DateNaissance) VALUES ('{user.Login}','{user.Pwd}','{user.Nom}','{user.Prenom}','{user.Mail}','{user.DateNaissance}')";
                     cmd.Connection = connect;
 
                     connect.Open();

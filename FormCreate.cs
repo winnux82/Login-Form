@@ -53,20 +53,7 @@ namespace Form_Login
 
         }
 
-        static string ComputeSha256Hash(string rawData)
-        {
-            // Create a SHA256   
-            // ComputeHash - returns byte array  
-            byte[] bytes = SHA256.HashData(Encoding.UTF8.GetBytes(rawData));
 
-            // Convert byte array to a string   
-            StringBuilder builder = new();
-            for (int i = 0; i < bytes.Length; i++)
-            {
-                builder.Append(bytes[i].ToString("x2"));
-            }
-            return builder.ToString();
-        }
         private void Btn_Choix_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.Button Btn = (System.Windows.Forms.Button)sender;
@@ -83,8 +70,8 @@ namespace Form_Login
                     verifid = int.Parse(Txt_ID.Text);
                 }
 
-                string hashed = ComputeSha256Hash(Txt_Password.Text);
-                Utilisateur DataUser = new(verifid, Txt_Login.Text, hashed,Txt_Nom.Text,Txt_Prenom.Text,Txt_Mail.Text,dateTimeBirthday.Value);
+                //string hashed = ComputeSha256Hash(Txt_Password.Text);
+                Utilisateur DataUser = new(verifid, Txt_Login.Text, Txt_Password.Text, Txt_Nom.Text,Txt_Prenom.Text,Txt_Mail.Text,dateTimeBirthday.Value);
 
 
                 if (Btn == Btn_Ajouter)

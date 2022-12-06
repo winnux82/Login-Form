@@ -14,10 +14,11 @@ namespace Calculatrice
         private void Btn_Valider_Click(object sender, EventArgs e)
         {
 
-            if (Txt_Id.Text == "" && Txt_Pass.Text == "")
-            {
+            //if (Txt_Id.Text == "" && Txt_Pass.Text == "")
+            if (IsUserExist(Txt_Id.Text,Txt_Pass.Text))
+                {
                 //this.Dispose();
-                //this.Close();
+                
                 IsValidLogin = true;
                 Close();
 
@@ -91,7 +92,7 @@ namespace Calculatrice
         }
 
         //Soon !
-        private void IsUserExist(string User)
+        private bool IsUserExist(string User,string Pwd)
         {
 
             bool result = false;
@@ -99,11 +100,9 @@ namespace Calculatrice
             try
             {
                 SqlConnection connect = new("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                connect.Open();
                 SqlCommand voir = new("Select * from users", connect);
-
-
-                string sqlCheck = string.Format("SELECT * from users WHERE Login = '{0}'", User);
+                Pwd = ListMethods.ComputeSha256Hash(Pwd);
+                string sqlCheck = string.Format("SELECT * from users WHERE Login = '{0}' AND Pwd='{1}' ", User, Pwd);
 
                 using (connect)
                 {
@@ -113,23 +112,16 @@ namespace Calculatrice
                         int dataLogin = (int)sqlCmd.ExecuteScalar();
                         connect.Close();
 
-                        result = (dataLogin > 0);
+                        return result = (dataLogin > 0);
                     }
                 }
             }
             catch (Exception ex)
             {
-                result = false;
+                MessageBox.Show(ex.Message);
+                return false;
             }
 
-            if (result)
-            {
-                MessageBox.Show("L'utilisateur existe");
-            }
-            else
-            {
-                MessageBox.Show("L'utilsateur n'existe pas");
-            }
         }
 
         private void Txt_Id_KeyPress(object sender, KeyPressEventArgs e)

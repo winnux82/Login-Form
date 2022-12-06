@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Form_Login
 {
@@ -11,7 +13,25 @@ namespace Form_Login
     {
         public int ID { get; set; }
         public string Login { get; set; }
-        public string Pwd { get; set; }
+
+        private string _Pwd;
+        public string Pwd
+        {
+            get { return _Pwd; }
+            set
+            {
+
+                if (!IsValidPassword(value))
+                {
+                    throw new Exceptions.UserInvalidPassword("Le Mot de passe est invalide !!!");
+                }
+                else
+                {
+                    _Pwd = ListMethods.ComputeSha256Hash(value);
+                }
+            }
+        }
+        //public string Pwd { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public string Mail { get; set; }
@@ -36,74 +56,92 @@ namespace Form_Login
 
         public Utilisateur(int id,string login, string pwd, string nom, string prenom, string mail, DateTime dateNaissance) : this(id,login, pwd, nom, prenom, mail)
         {
-            ID = id;
-            Login = login;
-            Pwd = pwd;
 
             DateNaissance = dateNaissance;
 
         }
 
-        public void Ajouter() 
+
+        public bool IsValidUser()
         {
+            if (!IsNotEmptyOnlyLetters(Nom))
+            {
+                return false;
+            }
+
+            if (!IsNotEmptyOnlyLetters(Prenom))
+            {
+                return false;
+            }
+
+            if (!IsValidEmail(Mail))
+            {
+                return false;
+            }
+
+            if (DateNaissance > DateTime.Today.AddYears(-18))
+            {
+                return false;
+            }
+
+            if (!IsValidPassword(_Pwd))
+            {
+                return false;
+            }
+
+            return true;
+        }
+        private bool IsValidPassword(string pass)
+        {
+
+            if (pass.Length < 8)
+                return false;
+
+            bool ExistUpper = false;
+            bool ExistDigit = false;
+
+            foreach (char caractere in pass)
+            {
+                if (char.IsUpper(caractere))
+                    ExistUpper = true;
+
+                if (char.IsDigit(caractere))
+                    ExistDigit = true;
+            }
+
+            return ExistUpper && ExistDigit;
+
+        }
+        private bool IsNotEmptyOnlyLetters(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+
+            foreach (char caractere in s)
+            {
+                if (!char.IsLetter(caractere))
+                    return false;
+            }
+
+            return true;
+        }
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return false;
+
             try
             {
-                SqlConnection connect = new ("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                connect.Open();
-                SqlCommand insert = new("insert into users(Login,Pwd,Nom,Prenom,Mail,DateNaissance) values (@Login,@Pwd,@Nom,@Prenom,@Mail,@DateNaissance)", connect);
-                insert.Parameters.AddWithValue("@Login", Login);
-                insert.Parameters.AddWithValue("@Pwd", Pwd);
-                insert.Parameters.AddWithValue("@Nom", Nom);
-                insert.Parameters.AddWithValue("@Prenom", Prenom);
-                insert.Parameters.AddWithValue("@Mail", Mail);
-                insert.Parameters.AddWithValue("@DateNaissance", DateNaissance);
-                insert.ExecuteNonQuery();
-                connect.Close();
-                MessageBox.Show("Utilisateur ajouté", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MailAddress address = new MailAddress(email);
 
+                return true;
             }
-            catch (Exception ex)
+            catch (FormatException)
             {
-                MessageBox.Show(ex.Message);
+                return false;
             }
-
 
         }
-        public void Update()
-        {
-            try
-            {
-                SqlConnection connect = new ("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                connect.Open();
-                SqlCommand update = new("update users set Login=@Login, Pwd=@Pwd, Nom=@Nom, Prenom=@Prenom, Mail=@Mail, DateNaissance=@DateNaissance where ID=@ID", connect);
-                update.Parameters.AddWithValue("@ID", ID);
-                update.Parameters.AddWithValue("@Login", Login);
-                update.Parameters.AddWithValue("@Pwd", Pwd);
-                update.Parameters.AddWithValue("@Nom", Nom);
-                update.Parameters.AddWithValue("@Prenom", Prenom);
-                update.Parameters.AddWithValue("@Mail", Mail);
-                update.Parameters.AddWithValue("@DateNaissance", DateNaissance);
-                update.ExecuteNonQuery();
-                connect.Close();
-                MessageBox.Show("Informations utilisateur mis à jour", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void Delete()
-        {
-
-                SqlConnection connect = new("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                connect.Open();
-                SqlCommand delete = new("Delete users where ID=@ID", connect);
-                delete.Parameters.AddWithValue("@ID", ID);
-                delete.ExecuteNonQuery();
-                connect.Close();
-                MessageBox.Show("Utilisateur effacé", "Info", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
     }
 }
