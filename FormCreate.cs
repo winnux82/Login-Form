@@ -1,22 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Data;
 using System.Data.SqlClient;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Reflection.Emit;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Drawing.Drawing2D;
 using TextBox = System.Windows.Forms.TextBox;
-using System.Reflection;
-using System.Security.Cryptography;
+
 
 namespace Form_Login
 {
@@ -72,7 +59,7 @@ namespace Form_Login
 
                 //string hashed = ComputeSha256Hash(Txt_Password.Text);
                 Utilisateur DataUser = new(verifid, Txt_Login.Text, Txt_Password.Text, Txt_Nom.Text,Txt_Prenom.Text,Txt_Mail.Text,dateTimeBirthday.Value);
-
+                DataUser.IsValidUser();
 
                 if (Btn == Btn_Ajouter)
                 {

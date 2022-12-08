@@ -1,5 +1,6 @@
 ﻿using Form_Login;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 
 namespace Calculatrice
 {
@@ -58,11 +59,6 @@ namespace Calculatrice
             Application.Exit();
         }
 
-        private void Lbl_Exit_MouseHover(object sender, EventArgs e)
-        {
-
-        }
-
         private void labelExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -82,8 +78,6 @@ namespace Calculatrice
         {
             this.CenterToScreen();
                //Txt_Pass.Focused = false;
-
-
         }
 
         private void TxtB_Pass_TextChanged(object sender, EventArgs e)
@@ -92,35 +86,40 @@ namespace Calculatrice
         }
 
         //Soon !
+        private string ConnexionString = "Data Source = localhost; Initial Catalog = login; Integrated Security = True";
         private bool IsUserExist(string User,string Pwd)
         {
 
             bool result = false;
 
-            try
-            {
-                SqlConnection connect = new("Data Source=localhost;Initial Catalog=login;Integrated Security=True");
-                SqlCommand voir = new("Select * from users", connect);
-                Pwd = ListMethods.ComputeSha256Hash(Pwd);
-                string sqlCheck = string.Format("SELECT * from users WHERE Login = '{0}' AND Pwd='{1}' ", User, Pwd);
 
-                using (connect)
+            using (SqlConnection connect = new SqlConnection(ConnexionString))
                 {
-                    using (SqlCommand sqlCmd = new(sqlCheck, connect))
+                    try
                     {
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        Pwd = ListMethods.ComputeSha256Hash(Pwd);
+                        cmd.CommandText = $"SELECT * from users WHERE Login = '{User}' AND Pwd='{Pwd}'";
+                        cmd.Connection = connect;
+
                         connect.Open();
-                        int dataLogin = (int)sqlCmd.ExecuteScalar();
+                        int dataLogin = Convert.ToInt32(cmd.ExecuteScalar());
                         connect.Close();
 
+                    
                         return result = (dataLogin > 0);
                     }
+
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
+            
+
 
         }
 

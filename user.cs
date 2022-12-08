@@ -21,9 +21,9 @@ namespace Form_Login
             set
             {
 
-                if (!IsValidPassword(value))
+                if (!ListMethods.IsValidPassword(value))
                 {
-                    throw new Exceptions.UserInvalidPassword("Le Mot de passe est invalide !!!");
+                    throw new Exceptions.InvalidPassword("Le Mot de passe est invalide !!!");
                 }
                 else
                 {
@@ -31,10 +31,50 @@ namespace Form_Login
                 }
             }
         }
-        //public string Pwd { get; set; }
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public string Mail { get; set; }
+
+        private string _Nom;
+
+        public string Nom
+        {
+            get { return _Nom; }
+            set 
+            {
+
+                if (!ListMethods.IsNotEmptyOnlyLetters(value))
+                    throw new Exceptions.InvalidLastName("Le nom doit contenir uniquement des lettres");
+                else
+                    _Nom = value; 
+            }
+        }
+        private string _Prenom;
+
+        public string Prenom
+        {
+            get { return _Prenom; }
+            set
+            {
+
+                if (!ListMethods.IsNotEmptyOnlyLetters(value))
+                    throw new Exceptions.InvalidFirstName("Le prénom doit contenir uniquement des lettres");
+                else
+                    _Prenom = value;
+            }
+        }
+        private string _Mail;
+
+        public string Mail
+        {
+            get { return _Mail; }
+            set
+            {
+
+                if (!ListMethods.IsValidEmail(value))
+                    throw new Exceptions.InvalidFirstName("L'adresse mail n'est pas correcte");
+                else
+                    _Mail = value;
+            }
+        }
+
 
         public DateTime DateNaissance { get; set; }
 
@@ -64,17 +104,17 @@ namespace Form_Login
 
         public bool IsValidUser()
         {
-            if (!IsNotEmptyOnlyLetters(Nom))
+            if (!ListMethods.IsNotEmptyOnlyLetters(Nom))
             {
                 return false;
             }
 
-            if (!IsNotEmptyOnlyLetters(Prenom))
+            if (!ListMethods.IsNotEmptyOnlyLetters(Prenom))
             {
                 return false;
             }
 
-            if (!IsValidEmail(Mail))
+            if (!ListMethods.IsValidEmail(Mail))
             {
                 return false;
             }
@@ -84,64 +124,14 @@ namespace Form_Login
                 return false;
             }
 
-            if (!IsValidPassword(_Pwd))
+            if (!ListMethods.IsValidPassword(_Pwd))
             {
                 return false;
             }
 
             return true;
         }
-        private bool IsValidPassword(string pass)
-        {
 
-            if (pass.Length < 8)
-                return false;
-
-            bool ExistUpper = false;
-            bool ExistDigit = false;
-
-            foreach (char caractere in pass)
-            {
-                if (char.IsUpper(caractere))
-                    ExistUpper = true;
-
-                if (char.IsDigit(caractere))
-                    ExistDigit = true;
-            }
-
-            return ExistUpper && ExistDigit;
-
-        }
-        private bool IsNotEmptyOnlyLetters(string s)
-        {
-            if (string.IsNullOrEmpty(s))
-                return false;
-
-            foreach (char caractere in s)
-            {
-                if (!char.IsLetter(caractere))
-                    return false;
-            }
-
-            return true;
-        }
-        private bool IsValidEmail(string email)
-        {
-            if (string.IsNullOrEmpty(email))
-                return false;
-
-            try
-            {
-                MailAddress address = new MailAddress(email);
-
-                return true;
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-
-        }
 
     }
 }
